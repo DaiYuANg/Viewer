@@ -1,0 +1,8 @@
+quarkus:
+  vertx:
+    cluster:
+      clustered: true
+  datasource:
+    jdbc: false
+  hibernate-orm:
+    physical-naming-strategy: "org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy"

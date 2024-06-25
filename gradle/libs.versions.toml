@@ -1,0 +1,136 @@
+[versions]
+quarkus = "3.11.3"
+quinoa = "2.3.10"
+vavr = "1.0.0-alpha-4"
+recordBuilder = "41"
+asciidoctor = "4.0.2"
+hibernate = "6.5.2.Final"
+jackson = "2.17.1"
+eclipseCollections = "12.0.0.M3"
+junit = "5.10.2"
+jdkVersion = "21"
+junitperf = "1.35.0"
+mapstruct = "1.6.0.Beta2"
+mockito = "5.12.0"
+testcontainers = "1.19.8"
+zxing = "3.5.3"
+log4j = "3.0.0-beta2"
+asyncAPI = "1.0.2"
+
+[plugins]
+quarkus = { id = "io.quarkus", version.ref = "quarkus" }
+lombok = { id = "name.remal.lombok", version = "2.2.6" }
+asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
+asciidoctorGem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
+asciidoctorEpub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
+asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
+asciidoctorRevealjs = { id = "org.asciidoctor.jvm.revealjs", version = "4.0.0-alpha.1" }
+asciidoctorEditconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
+modulegraph = { id = "dev.iurysouza.modulegraph", version = "0.10.0" }
+taskTree = { id = "com.dorongold.task-tree", version = "4.0.0" }
+gradleDotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
+jandex = { id = "org.kordamp.gradle.jandex", version = "2.0.0" }
+frontend = { id = "org.siouan.frontend-jdk17", version = "8.1.0" }
+dockerCompose = { id = "com.avast.gradle.docker-compose", version = "0.17.7" }
+gitVersion = { id = "com.xenoterracide.gradle.semver", version = "0.11.1" }
+versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
+plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.7" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA1" }
+
+[libraries]
+quarkusPlatform = { group = "io.quarkus.platform", name = "quarkus-bom", version.ref = "quarkus" }
+quarkusRest = { group = "io.quarkus", name = "quarkus-rest" }
+quarkusScheduler = { group = "io.quarkus", name = "quarkus-scheduler" }
+quarkusQuartz = { group = "io.quarkus", name = "quarkus-quartz" }
+quarkusRestJackson = { group = "io.quarkus", name = "quarkus-rest-jackson" }
+quarkusGithubAPI = { group = "io.quarkiverse.githubapi", name = "quarkus-github-api", version = "1.321.0" }
+quarkusReactivePgClient = { group = "io.quarkus", name = "quarkus-reactive-pg-client" }
+quarkusHibernateReactive = { group = "io.quarkus", name = "quarkus-hibernate-reactive" }
+quarkusHibernateTypes = { group = "io.quarkiverse.hibernatetypes", name = "quarkus-hibernate-types", version = "2.2.0" }
+quarkusHibernateReactivePanache = { group = "io.quarkus", name = "quarkus-hibernate-reactive-panache" }
+quarkusInfo = { group = "io.quarkus", name = "quarkus-info" }
+quarkusArc = { group = "io.quarkus", name = "quarkus-arc" }
+quarkusCache = { group = "io.quarkus", name = "quarkus-cache" }
+quarkusConfigYaml = { group = "io.quarkus", name = "quarkus-config-yaml" }
+quarkusVertx = { group = "io.quarkus", name = "quarkus-vertx" }
+quarkusJwt = { group = "io.quarkus", name = "quarkus-smallrye-jwt" }
+quarkusJwtBuild = { group = "io.quarkus", name = "quarkus-smallrye-jwt-build" }
+quarkusQuinoa = { group = "io.quarkiverse.quinoa", name = "quarkus-quinoa", version.ref = "quinoa" }
+quarkusQuinoaTest = { group = "io.quarkiverse.quinoa", name = "quarkus-quinoa-testing", version.ref = "quinoa" }
+quarkusPOI = { group = "io.quarkiverse.poi", name = "quarkus-poi", version = "2.0.6" }
+quarkusHibernateEnvers = { group = "io.quarkus", name = "quarkus-hibernate-envers" }
+quarkusLoggingManager = { group = "io.quarkiverse.loggingmanager", name = "quarkus-logging-manager", version = "3.0.3" }
+quarkusHibernateValidator = { group = "io.quarkus", name = "quarkus-hibernate-validator" }
+quarkusLoggingJson = { group = "io.quarkus", name = "quarkus-logging-json" }
+quarkusJunit5 = { group = "io.quarkus", name = "quarkus-junit5" }
+quarkusMailer = { group = "io.quarkus", name = "quarkus-mailer" }
+quarkusBucket4j = { group = "io.quarkiverse.bucket4j", name = "quarkus-bucket4j" }
+quarkusOpenAPI = { group = "io.quarkus", name = "quarkus-smallrye-openapi" }
+
+vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast" }
+
+recordBuilderProcessor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
+recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
+vavr = { group = "io.vavr", name = "vavr", version.ref = "vavr" }
+jsoup = { group = "org.jsoup", name = "jsoup", version = "1.17.2" }
+apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.16.0" }
+apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
+apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
+apacheCommonCodec = { group = "commons-codec", name = "commons-codec", version = "1.16.1" }
+apacheCommonText = { group = "org.apache.commons", name = "commons-text", version = "1.12.0" }
+apacheCommonValidator = { group = "commons-validator", name = "commons-validator", version = "1.8.0" }
+apacheCommonsCrypto = { group = "org.apache.commons", name = "commons-crypto", version = "1.2.0" }
+
+jacksonJrAll = { group = "com.fasterxml.jackson.jr", name = "jackson-jr-all", version.ref = "jackson" }
+jacksonDataTypeJodaTime = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-joda", version.ref = "jackson" }
+jacksonDataTypeEclipseCollections = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-eclipse-collections", version.ref = "jackson" }
+jacksonDataTypePCollection = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-pcollections", version.ref = "jackson" }
+jacksonDataTypeHibernate6 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-hibernate6", version.ref = "jackson" }
+jacksonGuava = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-guava" }
+
+#Test
+junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
+junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
+junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.11.0-M2" }
+testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
+testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
+testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
+mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+junitperf = { group = "com.github.noconnor", name = "junitperf", version.ref = "junitperf" }
+junitperfJunit5 = { group = "com.github.noconnor", name = "junitperf-junit5", version.ref = "junitperf" }
+restAssured = { group = "io.rest-assured", name = "rest-assured" }
+
+hibernateSpatil = { group = "org.hibernate.orm", name = "hibernate-spatial", version.ref = "hibernate" }
+hibernatejpaModelGen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen", version.ref = "hibernate" }
+pcollection = { group = "org.pcollections", name = "pcollections", version = "4.0.2" }
+
+password4j = { group = "com.password4j", name = "password4j", version = "1.8.2" }
+semver4j = { group = "org.semver4j", name = "semver4j", version = "5.2.2" }
+
+snowflake4j = { group = "com.github.philippheuer.snowflake4j", name = "snowflake4j", version = "1.0.1" }
+
+dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.2.2" }
+
+zxing = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
+zxingSe = { group = "com.google.zxing", name = "javase", version.ref = "zxing" }
+
+slf4j = { group = "org.slf4j", name = "slf4j-api", version = "2.1.0-alpha1" }
+guava = { group = "com.google.guava", name = "guava", version = "33.2.1-jre" }
+jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "24.1.0" }
+eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
+eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
+fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.13" }
+
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstructProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+
+useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.26.1" }
+
+log4jApi = { group = "org.apache.logging.log4j", name = "log4j-api", version.ref = "log4j" }
+log4jApiCore = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "log4j" }
+log4jToSlf4j = { group = "org.apache.logging.log4j", name = "log4j-to-slf4j", version.ref = "log4j" }
+
+oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.1" }
