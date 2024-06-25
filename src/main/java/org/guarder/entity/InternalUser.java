@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Cacheable
 @Accessors(chain = true)
-public class User extends BaseEntity {
+public class InternalUser extends BaseEntity {
   private String email;
 
   private String username;

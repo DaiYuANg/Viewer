@@ -1,11 +1,18 @@
+import com.xenoterracide.gradle.semver.GitMetadataExtension
+import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
+
 plugins {
   java
   application
+  idea
   alias(libs.plugins.quarkus)
   alias(libs.plugins.lombok)
   alias(libs.plugins.gradleDotenv)
   alias(libs.plugins.spotless)
   alias(libs.plugins.frontend)
+  alias(libs.plugins.gitVersion)
+  alias(libs.plugins.plantuml)
+  alias(libs.plugins.taskTree)
 }
 
 repositories {
@@ -51,22 +58,49 @@ dependencies {
   implementation(libs.semver4j)
   implementation(libs.slf4j)
   implementation(libs.oshi)
-  testImplementation(libs.mockitoCore)
-  testImplementation(libs.mockitoJunit)
+  implementation(libs.apacheCommonIO)
+  implementation(libs.jacksonGuava)
+  implementation(libs.quarkusPrettytime)
+  implementation(libs.quarkusKubernetes)
+  implementation(libs.jacksonDataTypeHibernate6)
+  implementation(libs.jacksonDataTypeEclipseCollections)
+  implementation(libs.quarkusBucket4j)
+  implementation(libs.quarkusMinio)
+  implementation(libs.quarkusMinioNative)
+
+  compileOnly(libs.autoFactory)
+  annotationProcessor(libs.autoFactory)
   annotationProcessor(libs.recordBuilderProcessor)
   implementation(libs.mapstruct)
   implementation(libs.log4jApi)
   implementation(libs.log4jApiCore)
   implementation(libs.log4jToSlf4j)
+  implementation(libs.quarkusQute)
+  implementation(libs.quarkusInfinispan)
+  implementation(libs.quarkusContainer)
+  implementation(libs.quarkusKafka)
+  implementation(libs.vertxIOUring)
   annotationProcessor(libs.mapstructProcessor)
   annotationProcessor(libs.hibernatejpaModelGen)
+  annotationProcessor(libs.infinispanProtostreamProcessor)
   testImplementation(libs.quarkusQuinoaTest)
   testImplementation(libs.quarkusJunit5)
   testImplementation(enforcedPlatform(libs.junitBom))
+  testImplementation(libs.restAssured)
+  testImplementation(libs.mockitoCore)
+  testImplementation(libs.mockitoJunit)
+  testImplementation(libs.dataFaker)
+  testImplementation(libs.junitApi)
+  testImplementation(libs.vertxJunit)
+  testImplementation(libs.quarkusJacoco)
+  testImplementation(libs.quarkusVirtualThreadTest)
+  testImplementation(libs.quarkusJunit5Internal)
+  testImplementation(libs.quarkusTestSecurityJwt)
 }
 
+val gitVersion: GitMetadataExtension = semver.git
 group = "org.guarder"
-version = "1.0-SNAPSHOT"
+version = gitVersion.commitShort!!
 
 java {
   sourceCompatibility = JavaVersion.VERSION_21
@@ -90,3 +124,15 @@ quarkus {
 frontend {
   nodeVersion.set("20.9.0")
 }
+
+val jdkVersion: String = libs.versions.jdkVersion.get()
+
+idea {
+  project {
+    jdkName = jdkVersion
+    languageLevel = IdeaLanguageLevel(jdkVersion)
+    vcs = "Git"
+  }
+}
+
+tasks.processResources { duplicatesStrategy = DuplicatesStrategy.INCLUDE }

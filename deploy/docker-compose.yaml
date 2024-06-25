@@ -1,0 +1,42 @@
+version: "3"
+services:
+  guarder-1:
+    image: guarder/guarder:latest
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+
+  guarder-2:
+    image: guarder/guarder:latest
+    env_file:
+      - .env
+
+  kafka:
+    image: 'bitnami/kafka:latest'
+    environment:
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+
+  infinispan:
+    image: infinispan/server:latest
+    environment:
+      - USER=admin
+      - PASS=password
+
+  postgresql:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: guarder
+      POSTGRES_DB: guarder
+      POSTGRES_PASSWORD: guarder
+
+  minio:
+    image: 'bitnami/minio:latest'
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password

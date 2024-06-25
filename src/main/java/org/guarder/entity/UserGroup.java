@@ -16,5 +16,5 @@ public class UserGroup extends BaseEntity {
 
   @OneToMany
   @JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-  private Set<User> user;
+  private Set<InternalUser> internalUser;
 }

@@ -1,6 +1,6 @@
 [versions]
-quarkus = "3.11.3"
-quinoa = "2.3.10"
+quarkus = "3.12.0.CR1"
+quinoa = "2.4.0"
 vavr = "1.0.0-alpha-4"
 recordBuilder = "41"
 asciidoctor = "4.0.2"
@@ -16,6 +16,7 @@ testcontainers = "1.19.8"
 zxing = "3.5.3"
 log4j = "3.0.0-beta2"
 asyncAPI = "1.0.2"
+quarkusMinio = "3.7.3"
 
 [plugins]
 quarkus = { id = "io.quarkus", version.ref = "quarkus" }
@@ -62,12 +63,27 @@ quarkusHibernateEnvers = { group = "io.quarkus", name = "quarkus-hibernate-enver
 quarkusLoggingManager = { group = "io.quarkiverse.loggingmanager", name = "quarkus-logging-manager", version = "3.0.3" }
 quarkusHibernateValidator = { group = "io.quarkus", name = "quarkus-hibernate-validator" }
 quarkusLoggingJson = { group = "io.quarkus", name = "quarkus-logging-json" }
+quarkusInfinispan = { group = "io.quarkus", name = "quarkus-infinispan-client" }
 quarkusJunit5 = { group = "io.quarkus", name = "quarkus-junit5" }
 quarkusMailer = { group = "io.quarkus", name = "quarkus-mailer" }
-quarkusBucket4j = { group = "io.quarkiverse.bucket4j", name = "quarkus-bucket4j" }
+quarkusQute = { group = "io.quarkus", name = "quarkus-qute" }
+quarkusBucket4j = { group = "io.quarkiverse.bucket4j", name = "quarkus-bucket4j", version = "1.0.3" }
 quarkusOpenAPI = { group = "io.quarkus", name = "quarkus-smallrye-openapi" }
+quarkusContainer = { group = "io.quarkus", name = "quarkus-container-image-docker" }
+quarkusKafka = { group = "io.quarkus", name = "quarkus-messaging-kafka" }
+quarkusKafkaStream = { group = "io.quarkus", name = "quarkus-kafka-streams" }
+quarkusJacoco = { group = "io.quarkus", name = "quarkus-jacoco", version = "quarkusVersion" }
+quarkusTestSecurityJwt = { group = "io.quarkus", name = "quarkus-test-security-jwt" }
+quarkusVirtualThreadTest = { group = "io.quarkus.junit5", name = "junit5-virtual-threads" }
+quarkusJunit5Internal = { group = "io.quarkus", name = "quarkus-junit5-internal" }
+quarkusKubernetes = { group = "io.quarkus", name = "quarkus-kubernetes" }
+quarkusPrettytime = { group = "io.quarkiverse.prettytime", name = "quarkus-prettytime", version = "2.0.2" }
+quarkusMinio = { group = "io.quarkiverse.minio", name = "quarkus-minio", version.ref = "quarkusMinio" }
+quarkusMinioNative = { group = "io.quarkiverse.minio", name = "quarkus-minio-native", version.ref = "quarkusMinio" }
 
 vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast" }
+vertxJunit = { group = "io.vertx", name = "vertx-junit5" }
+vertxIOUring = { group = "io.vertx", name = "vertx-io_uring-incubator", version = "4.5.7" }
 
 recordBuilderProcessor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
 recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
@@ -134,3 +150,8 @@ log4jApiCore = { group = "org.apache.logging.log4j", name = "log4j-core", versio
 log4jToSlf4j = { group = "org.apache.logging.log4j", name = "log4j-to-slf4j", version.ref = "log4j" }
 
 oshi = { group = "com.github.oshi", name = "oshi-core-java11", version = "6.6.1" }
+
+infinispanProtostreamProcessor = { group = "org.infinispan.protostream", name = "protostream-processor", version = "5.0.4.Final" }
+
+autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
+

@@ -5,8 +5,10 @@ import Pages from "vite-plugin-pages";
 import { visualizer } from "rollup-plugin-visualizer";
 import { compression } from "vite-plugin-compression2";
 import { VitePWA } from "vite-plugin-pwa";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  base: "",
   plugins: [
     react(),
     TurboConsole(),
@@ -18,6 +20,7 @@ export default defineConfig({
       emitFile: true,
     }) as PluginOption,
     compression(),
+    tsconfigPaths(),
     VitePWA(),
   ],
   build: {
@@ -27,5 +30,8 @@ export default defineConfig({
         experimentalMinChunkSize: 1024,
       },
     },
+  },
+  server: {
+    port: 3000,
   },
 });
