@@ -47,6 +47,10 @@ dependencies {
   implementation(libs.quarkusPOI)
   implementation(libs.quarkusMailer)
   implementation(libs.quarkusLoggingManager)
+  implementation(libs.quarkusMongodb)
+  implementation(libs.quarkusMongodbPanache)
+
+  annotationProcessor(libs.quarkusPanacheCommon)
   implementation(libs.guava)
   implementation(libs.eclipseCollections)
   implementation(libs.eclipseCollectionsAPI)
@@ -93,6 +97,7 @@ dependencies {
   testImplementation(libs.junitApi)
   testImplementation(libs.vertxJunit)
   testImplementation(libs.quarkusJacoco)
+  testImplementation(libs.quarkusPanacheMock)
   testImplementation(libs.quarkusVirtualThreadTest)
   testImplementation(libs.quarkusJunit5Internal)
   testImplementation(libs.quarkusTestSecurityJwt)

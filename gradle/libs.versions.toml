@@ -80,6 +80,10 @@ quarkusKubernetes = { group = "io.quarkus", name = "quarkus-kubernetes" }
 quarkusPrettytime = { group = "io.quarkiverse.prettytime", name = "quarkus-prettytime", version = "2.0.2" }
 quarkusMinio = { group = "io.quarkiverse.minio", name = "quarkus-minio", version.ref = "quarkusMinio" }
 quarkusMinioNative = { group = "io.quarkiverse.minio", name = "quarkus-minio-native", version.ref = "quarkusMinio" }
+quarkusMongodb = { group = "io.quarkus", name = "quarkus-mongodb-client" }
+quarkusMongodbPanache = { group = "io.quarkus", name = "quarkus-mongodb-panache" }
+quarkusPanacheMock = { group = "io.quarkus", name = "quarkus-panache-mock" }
+quarkusPanacheCommon = { group = "io.quarkus", name = "quarkus-panache-common", version.ref = "quarkus" }
 
 vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast" }
 vertxJunit = { group = "io.vertx", name = "vertx-junit5" }
