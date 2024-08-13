@@ -1,16 +1,12 @@
-import { RouterProvider } from "react-router-dom";
-import { router } from "./router";
-import { useQuery } from "@tanstack/react-query";
-import { firstAccess } from "./api/system.ts";
-import { InstallationGuarder } from "./component/InstallationGuarder.tsx";
+import {useRoutes} from "react-router-dom";
+import "./App.css"
+import {Suspense} from "react";
+import {routes} from "./route";
 
 const App = () => {
-  const { data } = useQuery({
-    queryKey: ["firstAccess"],
-    queryFn: firstAccess,
-  });
-
-  return <>{data ? <InstallationGuarder /> : <RouterProvider router={router} />}</>;
+  return <Suspense fallback={<p>Loading...</p>}>
+    {useRoutes(routes)}
+  </Suspense>
 };
 
-export default App;
+export {App};

@@ -1,0 +1,3 @@
+services:
+  viewer:
+    image: viewer/server

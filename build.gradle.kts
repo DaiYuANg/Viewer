@@ -1,4 +1,5 @@
 import com.xenoterracide.gradle.semver.GitMetadataExtension
+import org.apache.maven.shared.utils.Os
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
 
 plugins {
@@ -13,7 +14,15 @@ plugins {
   alias(libs.plugins.gitVersion)
   alias(libs.plugins.plantuml)
   alias(libs.plugins.taskTree)
+  alias(libs.plugins.versionCheck)
+  antlr
 }
+
+val src = layout.projectDirectory.dir("src")
+val main = src.dir("main")
+val antlr = main.dir("antlr")
+val webui = main.dir("webui")
+val docker = main.dir("docker")
 
 repositories {
   mavenLocal()
@@ -24,14 +33,17 @@ repositories {
 
 dependencies {
   implementation(enforcedPlatform(libs.quarkusPlatform))
+  annotationProcessor(enforcedPlatform(libs.quarkusPlatform))
   implementation(libs.quarkusHibernateReactive)
+  implementation(libs.vertxHazelcast)
   implementation(libs.quarkusRest)
   implementation(libs.quarkusConfigYaml)
-  implementation(libs.vertxHazelcast)
   implementation(libs.quarkusJwt)
   implementation(libs.quarkusJwtBuild)
   implementation(libs.quarkusVertx)
   implementation(libs.quarkusInfo)
+  implementation(libs.quarkusMinio)
+  implementation(libs.quarkusMinioNative)
   implementation(libs.quarkusHibernateReactivePanache)
   implementation(libs.quarkusHibernateValidator)
   implementation(libs.quarkusHibernateEnvers)
@@ -39,23 +51,34 @@ dependencies {
   implementation(libs.quarkusReactivePgClient)
   implementation(libs.quarkusCache)
   implementation(libs.quarkusArc)
-  implementation(libs.quarkusQuinoa)
+  if (!Os.isFamily(Os.FAMILY_MAC)) {
+    implementation(libs.quarkusQuinoa)
+  }
   implementation(libs.quarkusOpenAPI)
   implementation(libs.quarkusHibernateTypes)
   implementation(libs.quarkusQuartz)
   implementation(libs.quarkusScheduler)
-  implementation(libs.quarkusPOI)
   implementation(libs.quarkusMailer)
   implementation(libs.quarkusLoggingManager)
-  implementation(libs.quarkusMongodb)
-  implementation(libs.quarkusMongodbPanache)
+  implementation(libs.quarkusJgit)
+  implementation(libs.quarkusSsh)
+  implementation(libs.jimfs)
+  implementation(libs.quarkusAwt)
+  implementation(libs.quarkusContextPropagation)
+  implementation(libs.quarkusTika)
+  implementation(libs.quarkusFlyway)
+  implementation(libs.flywayPostgresql)
+  implementation(libs.apacheCommonCompress)
+
+  implementation(libs.password4j)
+
+  antlr(libs.antlr)
 
   annotationProcessor(libs.quarkusPanacheCommon)
   implementation(libs.guava)
   implementation(libs.eclipseCollections)
   implementation(libs.eclipseCollectionsAPI)
   implementation(libs.recordBuilderCore)
-  implementation(libs.hibernateSpatil)
   implementation(libs.useragent)
   implementation(libs.vavr)
   implementation(libs.apacheCommonLang3)
@@ -69,10 +92,12 @@ dependencies {
   implementation(libs.jacksonDataTypeHibernate6)
   implementation(libs.jacksonDataTypeEclipseCollections)
   implementation(libs.quarkusBucket4j)
-  implementation(libs.quarkusMinio)
-  implementation(libs.quarkusMinioNative)
+  implementation(libs.quarkusGithub)
+  implementation(libs.autoServiceAnnotation)
+  annotationProcessor(libs.autoService)
 
   compileOnly(libs.autoFactory)
+  compileOnly(libs.jetbrainsAnnotation)
   annotationProcessor(libs.autoFactory)
   annotationProcessor(libs.recordBuilderProcessor)
   implementation(libs.mapstruct)
@@ -82,7 +107,6 @@ dependencies {
   implementation(libs.quarkusQute)
   implementation(libs.quarkusInfinispan)
   implementation(libs.quarkusContainer)
-  implementation(libs.quarkusKafka)
   implementation(libs.vertxIOUring)
   annotationProcessor(libs.mapstructProcessor)
   annotationProcessor(libs.hibernatejpaModelGen)
@@ -94,6 +118,7 @@ dependencies {
   testImplementation(libs.mockitoCore)
   testImplementation(libs.mockitoJunit)
   testImplementation(libs.dataFaker)
+  testImplementation(libs.instancioJUnit5)
   testImplementation(libs.junitApi)
   testImplementation(libs.vertxJunit)
   testImplementation(libs.quarkusJacoco)
@@ -113,6 +138,7 @@ java {
 }
 
 tasks.withType<Test> {
+  useJUnitPlatform()
   systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
 }
 tasks.withType<JavaCompile> {
@@ -133,6 +159,9 @@ frontend {
 val jdkVersion: String = libs.versions.jdkVersion.get()
 
 idea {
+  module {
+    resourceDirs.addAll(listOf(webui.asFile, docker.asFile, antlr.asFile))
+  }
   project {
     jdkName = jdkVersion
     languageLevel = IdeaLanguageLevel(jdkVersion)
@@ -141,3 +170,7 @@ idea {
 }
 
 tasks.processResources { duplicatesStrategy = DuplicatesStrategy.INCLUDE }
+
+tasks.generateGrammarSource {
+  arguments = arguments + listOf("-visitor", "-long-messages")
+}

@@ -1,9 +1,10 @@
 quarkus:
   vertx:
     cluster:
-      clustered: true
+      clustered: false
   container-image:
-    group: guarder
+    group: viewer
+    name: server
     build: true
     additional-tags:
       - latest
@@ -17,4 +18,32 @@ quarkus:
   datasource:
     jdbc: false
   hibernate-orm:
+    statistics: true
+    metrics:
+      enabled: true
     physical-naming-strategy: "org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy"
+    log:
+      highlight-sql: true
+      log:
+        format-sql: true
+        sql: true
+  smallrye-openapi:
+    enable: true
+    store-schema-directory: build/openapi
+  flyway:
+    baseline-at-start: true
+    baseline-description: first init
+  package:
+    jar:
+      appcds:
+        enable: true
+"%dev":
+  quarkus:
+    log:
+      category:
+        "org.viewer":
+          level: DEBUG
+          min-level: DEBUG
+        "org.hibernate":
+          level: INFO
+          min-level: INFO

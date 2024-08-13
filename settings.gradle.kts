@@ -44,6 +44,6 @@ gitHooks {
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "guarder"
+rootProject.name = "Viewer"
 
 include("docs")
